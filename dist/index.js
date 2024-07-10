@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 import cors from 'cors';
 const app = express();
 const PORT = process.env.PORT || 4000;
-const mongoURI = 'mongodb://localhost:27017';
+const mongoURI = 'mongodb://localhost:27017/rush-b2b-main';
 const JWT_SECRET = 'your_jwt_secret_key'; // Секретный ключ для JWT
 // Подключение к MongoDB
 mongoose.connect(mongoURI, {
@@ -34,12 +34,12 @@ app.post('/api/login', async (req, res) => {
         // Ищем пользователя по email
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ message: 'Пользователь не найден' });
+            return res.status(400).json({ message: `Пользователь не найден (сообщение с бека): password: ${password}, email: ${email}` });
         }
         // Проверяем пароль
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
-            return res.status(400).json({ message: 'Неверный пароль' });
+            return res.status(400).json({ message: `неверный пароль (сообщение с бека): password:${password}, user.password: ${user === null || user === void 0 ? void 0 : user.password}` });
         }
         // Генерируем JWT токен
         const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
@@ -67,3 +67,4 @@ app.post('/api/register', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+//# sourceMappingURL=index.js.map

@@ -5,3 +5,4 @@ const UserSchema = new Schema({
     role: { type: String, enum: ['supplier', 'buyer'], required: true },
 }, { timestamps: true });
 export default mongoose.model('User', UserSchema);
+//# sourceMappingURL=User.js.map
