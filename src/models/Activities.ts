@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, {  Document } from 'mongoose';
 
 
 // Интерфейс для модели рода деятельности
@@ -8,7 +8,7 @@ interface Activity extends Document {
 }
 
 // Создаем схему для модели
-const ActivitySchema = new Schema<Activity>({
+const ActivitySchema = new mongoose.Schema<Activity>({
   code: { type: String, required: true, unique: true },
   name: { type: String, required: true },
 });

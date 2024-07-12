@@ -1,7 +1,7 @@
 {
   "name": "rushb2b-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "rushb2b-backend-api",
   "main": "index.js",
   "scripts": {
     "build": "tsc",

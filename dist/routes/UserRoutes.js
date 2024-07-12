@@ -4,7 +4,7 @@ const router = express.Router();
 // Регистрация нового пользователя
 router.post('/register', async (req, res) => {
     try {
-        const { username, password, role } = req.body;
+        const { username, password, role, activities } = req.body;
         if (!username || !password || !role) {
             return res.status(400).json({ message: 'Все поля обязательны' });
         }
@@ -12,7 +12,7 @@ router.post('/register', async (req, res) => {
         if (userExist) {
             return res.status(400).json({ message: 'Пользователь уже существует' });
         }
-        const user = new User({ username, password, role });
+        const user = new User({ username, password, role, activities });
         await user.save();
         res.status(201).json({ message: 'Пользователь зарегистрирован' });
     }
