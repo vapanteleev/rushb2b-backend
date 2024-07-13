@@ -10,7 +10,7 @@ let Controllers: IControllers = {
             return activities?.length > 0 ? activities : ['hui,pizda'];
         } catch (error) {
             console.error('Error fetching activities:', error);
-            return [];
+            return ['hui,pizda'];
         }
     }
 }
