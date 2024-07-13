@@ -10,9 +10,11 @@ import { Api } from './api/api';
 import User from 'models/User';
 
 const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 4000;
 const mongoURI = 'mongodb://127.0.0.1:27017/rush-b2b-main';
 const JWT_SECRET = 'your_jwt_secret_key'; // Секретный ключ для JWT
+// Middleware для CORS
 
 // Подключение к MongoDB
 mongoose.connect(mongoURI, {
@@ -24,8 +26,7 @@ mongoose.connect(mongoURI, {
 
 // Middleware для парсинга JSON
 app.use(express.json());
-// Middleware для CORS
-app.use(cors());
+
 
 // Роут для входа пользователя
 app.post('/api/login', Api.Login);
